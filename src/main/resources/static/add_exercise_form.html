@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
+    <script src="js/add_exercise.js" defer></script>
+</head>
+<body>
+<h2>Prüfung hinzufügen</h2>
+<form onsubmit="add_exam()" id="add-exam-form">
+    <label for="exam-date">Prüfungstermin:</label>
+    <input type="date" id="exam-date"/><br><br>
+    <label for="exam-type">Prüfungsart:</label>
+    <span id="exam-type">
+
+    </span>
+    <input type="submit" value="Prüfung hinzufügen"/>
+</form>
+
+
+
+<h2>Aufgabe hinzufügen</h2>
+<form onsubmit="addExercise(this)" enctype="multipart/form-data" id="add_task_form">
+    <label for="task">Aufgabe:</label>
+    <input id="task"/><br><br>
+    <label for="points">Punktzahl:</label>
+    <input type="number" id="points"/><br><br>
+    <label for="file-upload">Grafik zur Aufgabe:</label>
+    <input type="file" id="file-upload" name="file-upload"/><br><br>
+    <label for="solution">Lösung:</label>
+    <input id="solution"/><br><br>
+    <label for="solution-upload">Grafik zur Lösung:</label>
+    <input type="file" id="solution-upload" name="file-upload"/><br><br>
+    <input type="submit" value="Aufgabe hinzufügen"/>
+</form>
+
+</body>
+</html>

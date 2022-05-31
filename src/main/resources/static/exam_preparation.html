@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table id="exercises">
+    <tr>
+        <th>Aufgabe</th>
+        <th>Punktzahl</th>
+        <th>Lösung</th>
+    </tr>
+</table>
+<button onclick="addExercise()">neue Aufgabe hinzufügen</button>
+<h2>Aufgabe hinzufügen</h2>
+<form onsubmit="addExercise(this)">
+    <label for="title">Titel:</label><br>
+    <input name="title" id="title"><br>
+    <label for="task">Aufgabenbeschreibung:</label><br>
+    <textarea name="task" id="task"></textarea><br>
+    <label for="points">Punkte:</label><br>
+    <input type="number" name="points" id="points">
+    <button>Submit</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/examPrep.js"></script>
+</body>
+</html>

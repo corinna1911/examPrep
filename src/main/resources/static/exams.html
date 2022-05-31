@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prüfungen</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/exams.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/exam_style.css">
+</head>
+<header>
+    <form action="/logout">
+        <button>Ausloggen</button>
+    </form>
+</header>
+<body>
+<div>
+    <button class="btn btn-primary" id="exam-dropdown" onclick="exit_exam()">Alle Prüfungen</button>
+    <ul id="exam-list" class="list-group">
+
+    </ul>
+</div>
+<br>
+<div class="card text-center w-25 border-dark mb-3" id="index-card">
+    <div class="card-header" id="navbar">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item active" id="nav-task">
+                <a class="nav-link">
+                    <button class="transparent-button" onclick="show_task()">Aufgabe</button>
+                </a>
+            </li>
+            <li class="nav-item" id="nav-aid">
+                <a class="nav-link">
+                    <button class="transparent-button" onclick="show_aid()">Hilfsmittel</button>
+                </a>
+            </li>
+            <li class="nav-item" id="nav-solution">
+                <a class="nav-link">
+                    <button class="transparent-button" onclick="show_solution()">Lösung</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <h4 id="heading" class="card-title"><b>Aufgabe</b></h4>
+
+
+    <img class="card-img-top" onclick="enlargeImg(this)" alt="Card image cap" id="task-image">
+    <div class="card-body">
+
+        <div id="task" class card-text></div>
+        <br>
+        <div>
+            <button type="button" id="answer-modal" class="btn btn-primary" data-toggle="modal"
+                    data-target="#add-answer-modal">
+                Frage beantworten
+            </button>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="next_exercise()" id="next-exercise">Nächste Aufgabe</button>
+                <button class="btn btn-primary" onclick="exit_exam()" id="exit-exam">Prüfung beenden</button>
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="add-answer-modal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Antwort</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form enctype="multipart/form-data" id="add_answer_form">
+                                <label class="form-label" for="answer">Antwort eingeben:</label>
+                                <textarea class="form-control" id="answer"></textarea>
+                                <input id="answer-graphic" type="file" class="btn btn-primary">
+                                <p id="empty-answer-note">Bitte gib eine Antwort ein oder lade eine Datei hoch.</p>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="add_answer()">
+                                Antwort abschicken
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="solution-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Die Frage wurde noch nicht beantwortet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Die Lösung ist erst nach Beantwortung der Frage einsehbar.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<footer>
+    <ul id="difficulty" class="container">
+
+    </ul>
+    <nav aria-label="...">
+        <ul class="pagination" id="task-pagination">
+
+        </ul>
+    </nav>
+</footer>
+</body>
+</html>

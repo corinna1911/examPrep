@@ -1,0 +1,41 @@
+.transparent-button {
+    background-color: Transparent;
+    border: none;
+}
+
+#index-card{
+    display: none;
+}
+
+#empty-answer-note{
+    display: none;
+    color: red;
+    font-size: smaller;
+}
+
+/*#exam-list {
+    width:13%;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 1;
+}*/
+
+#exit-exam {
+    display: none;
+}
+
+#difficulty{
+    display: none;
+    list-style: none;
+}
+
+#difficulty li{
+   float: left;
+    padding: 15px;
+}
+
+#difficulty li label{
+    padding: 2px;
+    color: #0275d8
+}
+

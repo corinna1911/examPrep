@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/card_design.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
+    <script src="js/indexCards.js" defer></script>
+</head>
+<header>
+    <form action="/logout">
+        <button>Ausloggen</button>
+    </form>
+</header>
+<body>
+<button class="btn btn-primary" id="dropdown-filter" onclick="toggle_dropdown('dropdown-list')">Filtern</button>
+<div id="dropdown-list">
+    <ul id="category-list" class="list-group">
+
+    </ul>
+    <ul id="difficulty-list" class="list-group">
+    </ul>
+</div>
+
+
+</ul>
+<div class="card" id="index-card">
+    <img id="exercise-graphic">
+    <img id="solution-graphic">
+    <div class="card-body">
+        <div class="container">
+            <h4 id="heading" class="card-title"><b>Aufgabe</b></h4>
+            <p id="task" class="card-text"></p>
+            <p id="solution"></p>
+        </div>
+        <div id="difficulty" class="container">
+
+        </div>
+        <button onclick="show_solution()" id="show-solution">Lösung anzeigen</button>
+        <button onclick="next_exercise()" id="next-exercise">Nächste Aufgabe</button>
+    </div>
+</div>
+</body>
+</html>
