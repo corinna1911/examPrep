@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistik</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/statistics.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/statistics.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+</head>
+<body>
+<h1>Statistik</h1>
+<button class="btn btn-primary" id="dropdown-filter" onclick="toggle_dropdown('category-list')">Filtern</button>
+<div>
+    <ul id="category-list" class="dropdown-list">
+
+    </ul>
+</div>
+
+
+<label for="processing-rate">Gelöste Aufgaben:</label>
+<div class="progress-bar-outer" id="processing-rate">
+    <div class="progress-bar-inner" id="num-solved">
+    </div>
+</div>
+
+<label for="score">Durschnittliche Punktzahl:</label>
+<div class="progress-bar-outer" id="score">
+    <div class="progress-bar-inner" id="avg-score">
+    </div>
+</div>
+<br>
+<label for="study-duration">Lernzeit:</label>
+<span id="study-duration">
+</span>
+</body>
+</html>

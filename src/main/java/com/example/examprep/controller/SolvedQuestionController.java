@@ -65,7 +65,7 @@ public class SolvedQuestionController {
     }
 
     @GetMapping(path = "/getById")
-    public Optional getById(long id) {
+    public Optional getById(Long id) {
         return solvedQuestionService.findById(id);
     }
 

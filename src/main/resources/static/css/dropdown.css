@@ -1,0 +1,31 @@
+.dropdown-list {
+    position: absolute;
+    z-index: 1;
+    background-color: #f1f1f1;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#difficulty-list > li, #category-list > li{
+    font-size: large;
+    display: block;
+    padding: 8px 0px;
+}
+
+#difficulty-list > li:hover, #category-list > li:hover{
+    background-color: #0275d8;
+}
+
+#difficulty-list > li:hover button, #category-list > li:hover button{
+    color:white;
+}
+
+.list-button{
+    border:none;
+    background: transparent;
+    display:block;
+    width: 100%;
+}

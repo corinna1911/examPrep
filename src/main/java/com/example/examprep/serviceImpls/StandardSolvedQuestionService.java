@@ -5,6 +5,7 @@ import com.example.examprep.models.Task;
 import com.example.examprep.models.User;
 import com.example.examprep.repositories.SolvedQuestionRepository;
 import com.example.examprep.services.SolvedQuestionService;
+import com.example.examprep.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,14 @@ import java.util.Optional;
 @Service
 public class StandardSolvedQuestionService implements SolvedQuestionService {
 
-    @Autowired
     private SolvedQuestionRepository solvedQuestionRepository;
+    private UserService userService;
+
+    @Autowired
+    public StandardSolvedQuestionService(SolvedQuestionRepository solvedQuestionRepository, UserService userService) {
+        this.solvedQuestionRepository = solvedQuestionRepository;
+        this.userService = userService;
+    }
 
     @Override
     public Optional<SolvedQuestion> findById(Long id) {
@@ -66,6 +73,34 @@ public class StandardSolvedQuestionService implements SolvedQuestionService {
     @Override
     public List<SolvedQuestion> findByDifficulty(Long difficulty) {
         return solvedQuestionRepository.findByLevel_Id(difficulty);
+    }
+
+    @Override
+    public long getNum() {
+        return solvedQuestionRepository.countByUser_Id(userService.findCurrentUser().getId());
+    }
+
+    @Override
+    public long getNumByCategory(Long category_id) {
+        return solvedQuestionRepository.countByUser_IdAndTask_Category_Id(userService.findCurrentUser().getId(), category_id);
+    }
+
+    @Override
+    public double calcAvgScore() {
+        Optional<Double> avgScore = solvedQuestionRepository.averageScore(userService.findCurrentUser().getId());
+        if (avgScore.isEmpty()) {
+            return 0;
+        }
+        return avgScore.get();
+    }
+
+    @Override
+    public double calcAvgScoreByCategory(Long categoryId) {
+        Optional<Double> avgScore = solvedQuestionRepository.averageScoreByTask_Category_Id(userService.findCurrentUser().getId(), categoryId);
+        if (avgScore.isEmpty()) {
+            return 0;
+        }
+        return avgScore.get();
     }
 
 

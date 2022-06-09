@@ -1,7 +1,6 @@
 package com.example.examprep.services;
 
 import com.example.examprep.models.Exam;
-import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 

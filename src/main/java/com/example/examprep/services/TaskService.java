@@ -10,7 +10,7 @@ public interface TaskService {
 
     List<Task> findAll();
 
-    void save(Task task);
+    Task save(Task task);
 
     Optional<Task> findById(Long id);
 
@@ -22,4 +22,7 @@ public interface TaskService {
 
     List<Task> findByExam(Long id);
 
+    long getNum();
+
+    long getNumByCategory(Long category_id);
 }

@@ -19,6 +19,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
     private PasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
@@ -34,9 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/register**", "/scripts**")
                 .permitAll().anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/exams.html", true)
+                .formLogin().successHandler(loginSuccessHandler)
                 .and()
-                .logout().invalidateHttpSession(true)
+                //set invalidatesession und clearAuthentication to true again
+                .logout().logoutSuccessHandler(logoutSuccessHandler).invalidateHttpSession(false)
                 .clearAuthentication(true).permitAll().and()
                 .csrf().disable().cors();
     }

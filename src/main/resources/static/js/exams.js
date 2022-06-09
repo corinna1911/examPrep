@@ -1,5 +1,6 @@
 let next_task;
 let tasks;
+let answered = false;
 
 window.onload = getAllExams();
 
@@ -44,6 +45,7 @@ function add_difficulties() {
                     radiobox.type = "radio";
                     radiobox.id = data[i].level;
                     radiobox.name = "difficulty";
+                    radiobox.setAttribute("onclick", "end_exercise()")
 
                     let label = document.createElement('label')
                     label.htmlFor = data[i].id;
@@ -58,6 +60,11 @@ function add_difficulties() {
         })
 }
 
+function end_exercise() {
+    setDifficulty();
+    next_exercise();
+}
+
 function show_exam(id) {
 
     $.ajax({
@@ -67,7 +74,7 @@ function show_exam(id) {
             document.getElementById("exam-list").style.display = "none";
             show_task();
             add_pagination();
-            show_exercise_button();
+            //show_exercise_button();
             document.getElementById("difficulty").style.display = "block";
         }
     })
@@ -108,12 +115,12 @@ function setAnswer() {
 }
 
 function next_exercise() {
-    setDifficulty();
+    //setDifficulty();
 
     document.getElementById("task-pagination").children[next_task - 1].classList.remove("active");
+    answered = false;
 
     if (next_task > tasks.length - 2) {
-        document.getElementById("next-exercise").style.display = "none";
         document.getElementById("exit-exam").style.display = "block";
     }
 
@@ -148,7 +155,7 @@ function add_answer() {
             processData: false,
             contentType: false, //cache: false,
             success: function () {
-                alert("Antwort eingereicht");
+                answered = true;
                 $("#add-answer-modal").modal("hide");
             },
         })
@@ -206,26 +213,24 @@ function add_pagination() {
     document.getElementById("task-pagination").children[0].classList.add("active");
 }
 
-function show_exercise_button() {
-    document.getElementById("next-exercise").style.display = "block";
-    document.getElementById("exit-exam").style.display = "none";
-}
-
 function show_exercise(index) {
-    document.getElementById("task-pagination").children[index].classList.add("active");
-    document.getElementById("task-pagination").children[next_task - 1].classList.remove("active");
+    if (answered === false) {
+        document.getElementById("task-pagination").children[index].classList.add("active");
+        document.getElementById("task-pagination").children[next_task - 1].classList.remove("active");
 
-    setDifficulty();
+        setDifficulty();
 
-    if (index > tasks.length - 2) {
-        document.getElementById("next-exercise").style.display = "none";
-        document.getElementById("exit-exam").style.display = "block";
+        if (index > tasks.length - 2) {
+            document.getElementById("exit-exam").style.display = "block";
+        } else {
+            document.getElementById("exit-exam").style.display = "none";
+        }
+
+        next_task = index + 1;
+        show_task()
     } else {
-        show_exercise_button();
+        $("#missing-rate").modal();
     }
-
-    next_task = index + 1;
-    show_task()
 }
 
 function exit_exam() {

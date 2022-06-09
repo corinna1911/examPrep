@@ -5,6 +5,7 @@ import com.example.examprep.models.Solution;
 import com.example.examprep.models.Task;
 import com.example.examprep.services.FileService;
 import com.example.examprep.services.SolutionService;
+import com.example.examprep.services.SolvedQuestionService;
 import com.example.examprep.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,22 +20,25 @@ import java.util.List;
 @RequestMapping(path = "/tasks")
 public class TaskController {
 
-    @Autowired
     private TaskService taskService;
-    @Autowired
     private FileService fileService;
-    @Autowired
     private SolutionService solutionService;
 
+    @Autowired
+    public TaskController(FileService fileService, TaskService taskService, SolutionService solutionService) {
+        this.fileService = fileService;
+        this.taskService = taskService;
+        this.solutionService = solutionService;
+    }
+
     @PostMapping(path = "/add")
-    public String add(@RequestParam ArrayList<MultipartFile> file, @RequestParam String task, @RequestParam double points, @RequestParam String solution) throws IOException {
+    public Task add(@RequestParam ArrayList<MultipartFile> file, @RequestParam String task, @RequestParam double points, @RequestParam String solution) throws IOException {
         DBFile taskFile = fileService.storeFile(file.get(0));
         DBFile solutionFile = fileService.storeFile(file.get(1));
 
         Solution solutionId = solutionService.save(new Solution(solution, solutionFile));
 
-        taskService.save(new Task(task, points, taskFile, solutionId));
-        return "Saved";
+        return taskService.save(new Task(task, points, taskFile, solutionId));
     }
 
 
@@ -63,6 +67,5 @@ public class TaskController {
     public List<Task> getByExam(@RequestParam Long id) {
         return taskService.findByExam(id);
     }
-
 
 }

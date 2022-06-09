@@ -98,4 +98,6 @@ public class UserController {
         return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
     }
 
+
+
 }

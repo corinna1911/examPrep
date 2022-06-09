@@ -34,8 +34,8 @@ public class StandardTaskService implements TaskService {
     }
 
     @Override
-    public void save(Task task) {
-        taskRepository.save(task);
+    public Task save(Task task) {
+        return taskRepository.save(task);
     }
 
     @Override
@@ -74,6 +74,16 @@ public class StandardTaskService implements TaskService {
     @Override
     public List<Task> findByExam(Long id) {
         return taskRepository.findByExam_Id(id);
+    }
+
+    @Override
+    public long getNum() {
+        return taskRepository.count();
+    }
+
+    @Override
+    public long getNumByCategory(Long category_id) {
+        return taskRepository.countByCategory_Id(category_id);
     }
 
     private Task getMaxPriority(List<SolvedQuestion> solvedQuestions) {

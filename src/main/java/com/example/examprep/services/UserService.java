@@ -4,6 +4,8 @@ import com.example.examprep.models.User;
 import com.example.examprep.models.VerificationToken;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +30,6 @@ public interface UserService extends UserDetailsService {
     VerificationToken getVerificationToken(String token);
 
     User findCurrentUser();
+
 
 }

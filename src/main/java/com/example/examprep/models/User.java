@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.ConnectionBuilder;
+import java.time.Duration;
 import java.util.Collection;
 
 @Entity
@@ -26,6 +27,7 @@ public class User {
     private String email;
     private String password;
     private boolean enabled;
+    private Duration duration;
     /**@ManyToMany()
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -38,6 +40,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.enabled = false;
+        this.duration = Duration.ZERO;
     }
 
 }

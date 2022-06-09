@@ -1,7 +1,6 @@
 package com.example.examprep.services;
 
 import com.example.examprep.models.Answer;
-import com.example.examprep.models.Task;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,7 +18,7 @@ public interface AnswerService {
 
     void delete(long id);
 
-    void addAnswer(ArrayList<MultipartFile> file, String answer,long taskId) throws IOException;
+    void addAnswer(ArrayList<MultipartFile> file, String answer, long taskId) throws IOException;
 
     Answer findByTaskAndUser(Long taskId);
 }

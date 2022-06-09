@@ -1,0 +1,21 @@
+.progress-bar-outer{
+    background-color:lightgrey;
+    width:100%;
+
+}
+
+.progress-bar-inner{
+    background-color:#0275d8;
+    color:white;
+    text-align: center;
+}
+
+#category-list{
+    display: none;
+}
+
+#study-duration{
+    background: #0275d8;
+    color: white;
+    font-size:large;
+}

@@ -16,11 +16,15 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     LinkedList<Task> findAll();
 
 
-    List<Task> findByCategory_Id(Long id);
+    List<Task> findByCategory_Id(Long categoryId);
 
-    List<Task> findByExam_Id(Long exam);
+    List<Task> findByExam_Id(Long examId);
 
     @Query ("select distinct t FROM Task t where  t.category.id = :#{#category} and t.id not in (select s.task.id from SolvedQuestion s where s.user.id = :#{#user})")
     LinkedList<Task> findAllByNotUserAndCategory(@Param("user")Long user, @Param("category")Long category);
+
+    long count();
+
+    long countByCategory_Id(Long categoryId);
 
 }

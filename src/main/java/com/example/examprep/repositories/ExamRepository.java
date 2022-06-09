@@ -12,6 +12,4 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
 
     Exam findById(long id);
 
-
-
 }

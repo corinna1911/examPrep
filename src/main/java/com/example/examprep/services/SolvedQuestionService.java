@@ -27,4 +27,12 @@ public interface SolvedQuestionService {
     List<SolvedQuestion> findAllByUserAndCategory(User user, Long category);
 
     List<SolvedQuestion> findByDifficulty(Long difficulty);
+
+    long getNum();
+
+    long getNumByCategory(Long category_id);
+
+    double calcAvgScore();
+
+    double calcAvgScoreByCategory(Long categoryId);
 }

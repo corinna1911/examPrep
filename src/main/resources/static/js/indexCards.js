@@ -1,3 +1,5 @@
+
+
 let task_id;
 let category_id;
 let tasks;
@@ -12,27 +14,37 @@ window.addEventListener("click", function (e) {
 
 window.onload = function () {
 
+    get_categories("show_tasks_by_category");
+
+    get_difficulties();
+}
+
+function get_categories(onclick_function) {
     $.ajax(
         {
             type: "GET",
             url: "http://localhost:8080/categories/all",
             dataType: 'json',
             success: function (data) {
-                for (let i in data) {
-                    let list = document.getElementById("category-list");
-                    let element = document.createElement('li');
-                    let button = document.createElement('button');
-                    button.setAttribute("class", "list-button");
-
-                    button.setAttribute("onclick", "show_tasks_by_category(" + data[i].id + ");");
-                    button.appendChild(document.createTextNode(data[i].category));
-                    element.appendChild(button);
-                    list.appendChild(element);
-                }
+                create_category_list(data, onclick_function);
             }
         })
+}
 
-    get_difficulties();
+function create_category_list(categories, onclick_function) {
+
+    for (let i in categories) {
+        let list = document.getElementById("category-list");
+        let element = document.createElement('li');
+        let button = document.createElement('button');
+        button.setAttribute("class", "list-button");
+
+        button.setAttribute("onclick", onclick_function+"(" + categories[i].id + ")");
+        button.appendChild(document.createTextNode(categories[i].category));
+        element.appendChild(button);
+        list.appendChild(element);
+    }
+
 }
 
 function get_difficulties() {
